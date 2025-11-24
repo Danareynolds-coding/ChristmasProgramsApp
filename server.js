@@ -18,4 +18,4 @@ server.use(helmet.contentSecurityPolicy({
 server.use('/', router)
 server.use(express.json())
 server.use(express.urlencoded({extended: true}))
-server.listen(PORT, ()=> console.log(`Merry Christmas!!! at port {PORT}`))
+server.listen(PORT, ()=> console.log(`Merry Christmas!!! at port ${PORT}`))

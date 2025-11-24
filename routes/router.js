@@ -1,15 +1,16 @@
-
+// ('programschristmasdb api')//
 const express = require('express')
 const router = express.Router()
-const PORT = process.env.PORT
+const PORT = process.env.PORT || 3000
 
 // rootroute http://localhost:3000/api
-router.get('/api', (req, res) => {
+router.get('/api', (req, res)=> {
   res.json({
-    'Programs':`http://localhost:${PORT}/api/programs`
+    'All Programs':`http://localhost:${PORT}/api/programs`
   })
 })
-// ('programschristmasdb api')//
+
+router.use('/api/programs', require('./api/programsRoutes'))
 
 // error handling
 router.use((req, res, next)=> {
