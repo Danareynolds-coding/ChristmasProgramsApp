@@ -2,19 +2,123 @@
 const express = require('express')
 const router = express.Router()
 const PORT = process.env.PORT || 3000
-
+const axios = require('axios')
 // rootroute http://localhost:3000/api
 router.get('/api', (req, res)=> {
   res.json({
-    'All Programs':`http://localhost:${PORT}/api/programs`
+  'Programs':`http://localhost:${PORT}/api/programs`,
+  'Actors': `http://localhost:${PORT}/api/actors`,
+  'Directors':`http://localhost:${PORT}/api/directors`,
+  'ProductionCo':`http://localhost:${PORT}/api/productionCo`,
+  'Genre': `http://localhost:${PORT}/api/genre`,
+  'Streaming': `http://localhost:${PORT}/api/streaming` 
   })
 })
 
-router.use('/api/programs', require('./api/programsRoutes'))
+// router.use('/api/programs', require('./api/programsRoutes'))
+const endpoints = [
+  'programs',
+   'actors',
+   'directors',
+   'genre',
+   'productionCo',
+   'streaming'
+]
+endpoints.forEach(endpoint => {
+  router.use(`/api/${endpoint}`, require(`./api/${endpoint}Routes`))
+})
+router.get('/api/programs',(req ,res)=> {
+  const url = 'http://api/programs'
+  axios.get(url)
+    .then(resp =>{
+      res.render('pages/ProgramsPage',{
+        title:'Programs',
+        name:'Programs',
+        data:resp.data
+      })
+    })
+})
+router.get('/api/actors',(req ,res)=> {
+  const url = 'http://api/actors'
+  axios.get(url)
+    .then(resp =>{
+      res.render('pages/ActorsPage',{
+        title:'Actors',
+        name:'Actors',
+        data:resp.data
+      })
+    })
+})
+router.get('/api/directors',(req ,res)=> {
+  const url = 'http://api/directors'
+  axios.get(url)
+    .then(resp =>{
+      res.render('pages/DrectorsPage',{
+        title:'Directors',
+        name:'Directors',
+        data:resp.data
+      })
+    
+})
+router.get('/', (req, res)=> {
+    res.render('pages/home', {
+      title: 'Christmas Movies and TV Programs',
+      name:"Christmas Programs"
+    })
+})
+//htps://localhost:3000/Programs
+router.get('pages/Actors',(req, res)=> {
+  res.render('pages/Programs', {
+    title:'Christmas Programs',
+    name:"Christmas Programs"
+  })
+})
+// http://localhost:3000/actors-form
+router.get('/actors-form', (req, res)=> {
+    res.render('pages/actors-form', {
+      title: 'Actors Form',
+      name: 'Add an Actor'
+    })
+})
+
+// http://localhost:3000/directors-form
+router.get('/directors-form', (req, res)=> {
+    res.render('pages/directors-form', {
+      title: 'Directors Form',
+      name: 'Add a Director'
+    })
+})
+
+// http://localhost:3000/genre-form
+router.get('/genre-form', (req, res)=> {
+    res.render('pages/genre-form', {
+      title: 'Genre Form',
+      name: 'Add a Genre'
+    })
+})
+// http://localhost:3000/productionCo-form
+router.get('/productionCo-form', (req, res)=> {
+    res.render('pages/productionCo-form', {
+      title: 'PRODUCTION COMPANY FORM',
+      name: 'Add a Production Company'
+    })
+})
+// http://localhost:3000/streaming-form
+router.get('/streaming-form', (req, res)=> {
+    res.render('pages/streaming-form', {
+      title: 'Streaming Form',
+      name: 'Add a Streaming Platform'
+    })
+})
+
+
 
 // error handling
 router.use((req, res, next)=> {
   res.status(404)
-  .send('<h1>404 Error This page does not exist!</h1>')
+  .render('pages/error', {
+    title:'error page',
+    name: '404 - Page Not Found'
+  })
 })
 module.exports = router

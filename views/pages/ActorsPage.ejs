@@ -1,0 +1,22 @@
+<%- include('../partials/header') %> 
+
+<main class="main">
+  <div class="container">
+    <div class="row">
+         <div class="row row-cols-1 row-cols-md-3 g-4">
+  <section class="section" id="section">
+    <% data.forEach(actors => {%>
+      <div class="card" style="width: 18rem;">
+        <img src="<%= actors.ImagePath %>" alt="picture of actor"/>
+        <div class="card-body">
+          <%= actors.fName %><%= actors.lName %>
+        </div>  
+      </div>
+    </div>
+  <% }) %>
+      </div>
+    </div>
+  </div>
+</main>
+
+<%- include('../partials/footer') %> 
