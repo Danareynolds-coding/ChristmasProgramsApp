@@ -17,8 +17,8 @@ router.get('/api/genre',(req ,res)=> {
     })
 })
 
-//2 http://localhost:3000/genre-form
-router.get('/genre-form', (req, res)=> {
+//2 http://localhost:3000/genre/form or /api/genre/form
+router.get('/form', (req, res)=> {
     res.render('pages/genre-form', {
       title: 'Genre Form',
       name: 'Add a Genre'

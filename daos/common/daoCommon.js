@@ -2,14 +2,14 @@
 // daoCommon holds methods that all other tables can use//
 const connect = require('../../config/dbconfig')
 //querry database methods 2args 1.sqlquery 2.callback function 
-const daoCommon = {
+const daoCommon = {              //+
   findAll: (res, table) => {
     connect.query(
       `SELECT * FROM ${table};`,
       (error, rows) => {
         if (!error) {
           if (rows.length === 1) {
-            res.json(rows[0]);
+            res.json(...rows);
           } else {
             res.json(rows);
           }
@@ -30,7 +30,7 @@ const daoCommon = {
       (error, rows) => {
         if (!error) {
           if (rows.length === 1) {
-            res.json(rows[0])
+            res.json(...rows)
           } else {
             res.json(rows)
           }

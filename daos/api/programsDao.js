@@ -3,12 +3,21 @@ const connect = require('../../config/dbconfig');
 const programsDao = {
     table: 'programs',
   // same as find all
-    findMovieInfo (res, table) {
+    findProgramsInfo (res, table) {
         const sql = `SELECT p.programs_id, p.title, p.rating, p.animationType, p.runtime, p.yr_released, p.productionCo, p.budget, p.grossProfit, p.showing, p.posterURL, p.description, p.fivePointRating,
             CASE WHEN p.budget IS NULL THEN NULL ELSE p.budget END budget,
             CASE WHEN p.gross IS NULL THEN '' ELSE p.gross END gross
             FROM programs p
-            ORDER BY p.programs_id, p.title;`;
+            JOIN productionCo c using productionCo_id
+            JOIN program_to_actors pa ON p.programs_id = pa.programs_id
+            JOIN actors a ON pa.actors_id = a.actors_id
+            JOIN program_to_directors pd ON p.programs_id = pd.programs_id
+            JOIN directors d ON pd.directors_id = d.directors_id
+            JOIN program_to_genre pg ON p.programs_id = pg.programs_id
+            JOIN genre g ON pg.genre_id = g.genre_id
+            JOIN program_to_streaming ps ON p.programs_id = ps.programs_id
+            JOIN streaming s ON ps.streaming_id = s.streaming_id
+            ORDER BY p.title;`;
         connect.query(sql, (error, rows) => {
             if (!error) {
                 if (rows.length === 1) {
@@ -33,7 +42,7 @@ const programsDao = {
             (error, rows) => {
                 if (!error) {
                     if (rows.length === 1) {
-                        res.json(rows[0]);
+                        res.json(...rows);
                     } else {
                         res.json(rows);
                     }

@@ -16,26 +16,16 @@ router.get('/api/actors',(req ,res)=> {
       })
     })
 })
-//1b Single actor
-router.get('/api/actors/:id',(req ,res)=> {
-  const url = `http://localhost:3000/api/actors/${id}`
-  axios.get(url)
-    .then(resp =>{
-      res.render('pages/SingleActor',{
-        title:`${fName} ${lName}`,
-        image:`${ImagePath}`,
-        data:resp.data
-      })
-    })
-})
 
-// 2.form  http://localhost:3000/actors-form
-router.get('/actors-form', (req, res)=> {
+// 2.form  http://localhost:3000/actors/form or /api/actors/form
+router.get('/form', (req, res)=> {
     res.render('pages/actors-form', {
       title: 'Actors Form',
       name: 'Add an Actor'
     })
 })
+
+
 
 // 3.all  http://localhost:3000/api/actors
 router.get('/',(req, res)=> {
@@ -51,6 +41,18 @@ router.get('/sort/:sorter', (req, res)=> {
 // 5 programByActor  http://localhost:3000/api/actors/get_ProgramsForActors/?By
 router.get('/get_programsForActors/:id', (req, res)=> {
   dao.findProgramsByActors(res, dao.table, req.params.id)
+})
+//1b Single actor
+router.get('/api/actors/:id',(req ,res)=> {
+  const url = `http://localhost:3000/api/actors/${id}`
+  axios.get(url)
+    .then(resp =>{
+      res.render('pages/SingleActor',{
+        title:`${fName} ${lName}`,
+        image:`${ImagePath}`,
+        data:resp.data
+      })
+    })
 })
 
 //  6.ID http://api/actor/?

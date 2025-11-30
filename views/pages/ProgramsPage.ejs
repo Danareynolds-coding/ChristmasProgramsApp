@@ -3,9 +3,9 @@
     <section class="programs">
       <div class="container">
         <div class="row row-cols-1 row-col-md-3 row-col-lg-4 g-4" id="programRow">
-          <div class="col">
-             <% data.forEach(programs => { %>
-              <div class="card" style="width: 18rem;">
+            <% data.forEach(programs => { %>
+               <div class="col">
+               <div class="card" style="width: 18rem;">
                 <img src="<%= programs.posterURL %>" class="card-img-top" alt="image of <%= programs.posterULR %>">
                   <div class="card-body">
                     <h3 class="card-title text-center"><%= programs.title %></h3>

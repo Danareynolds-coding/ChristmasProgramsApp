@@ -18,8 +18,8 @@ router.get('/api/directors',(req ,res)=> {
     })
 })
 
-//  2. form http://localhost:3000/directors-form
-router.get('/directors-form', (req, res)=> {
+//  2. form http://localhost:3000/directors/form or /api/directors/form
+router.get('/form', (req, res)=> {
     res.render('pages/directors-form', {
       title: 'Directors Form',
       name: 'Add a Director'

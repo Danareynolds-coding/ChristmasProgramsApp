@@ -11,13 +11,13 @@ router.get('/api/productionCo',(req ,res)=> {
         title:'ProductionCo List',
         name:'ProductionCo List',
         ProductionCo:'productionCo',
-        data:resp.data
+        data:data
       })
     })
 })
 
-// 2 http://localhost:3000/productionCo-form
-router.get('/productionCo-form', (req, res)=> {
+// 2 http://localhost:3000/productionCo/form or /api/productionCo/form
+router.get('/form', (req, res)=> {
     res.render('pages/productionCo-form', {
       title: 'PRODUCTION COMPANY FORM',
       name: 'Add a Production Company'

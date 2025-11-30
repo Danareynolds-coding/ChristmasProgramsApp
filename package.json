@@ -20,7 +20,9 @@
     "helmet": "^8.1.0",
     "mysql2": "^3.15.3"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "nodemon": "^3.1.11"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Danareynolds-coding/ChristmasProgramsApp.git"

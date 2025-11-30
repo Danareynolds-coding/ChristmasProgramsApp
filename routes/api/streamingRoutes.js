@@ -17,8 +17,8 @@ router.get('/api/genre',(req ,res)=> {
     })
 })
 
-// 2  http://localhost:3000/streaming-form
-router.get('/streaming-form', (req, res)=> {
+// 2  http://localhost:3000/streaming/form or /api/streaming/form
+router.get('/form', (req, res)=> {
     res.render('pages/streaming-form', {
       title: 'Streaming Form',
       name: 'Add a Streaming Platform'
