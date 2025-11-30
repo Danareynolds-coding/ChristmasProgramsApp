@@ -10,6 +10,7 @@ router.get('/api/productionCo',(req ,res)=> {
       res.render('pages/ProductionCoPage',{
         title:'ProductionCo List',
         name:'ProductionCo List',
+        ProductionCo:'productionCo',
         data:resp.data
       })
     })

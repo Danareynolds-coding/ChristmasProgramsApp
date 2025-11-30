@@ -39,8 +39,8 @@ router.get('/', (req, res)=> {
 // error handling
 router.use((req, res, next)=> {
   res.status(404)
-  .render('pages/error', {
-    title:'error page',
+  .render('pages/404', {
+    title:'404 - Page Not Found',
     name: '404 - Page Not Found'
   })
 })

@@ -3,14 +3,27 @@ const router = require('express').Router();
 const{actorsDao: dao} = require('../../daos/dao');
 const axios = require('axios');
 
-//1. page
+// 1a  page
 router.get('/api/actors',(req ,res)=> {
   const url = 'http://api/actors'
   axios.get(url)
     .then(resp =>{
       res.render('pages/ActorsPage',{
         title:'Actors',
-        name:'Actors',
+        name:`${fName} ${lName}`,
+        image:`${ImagePath}`,
+        data:resp.data
+      })
+    })
+})
+//1b Single actor
+router.get('/api/actors/:id',(req ,res)=> {
+  const url = `http://localhost:3000/api/actors/${id}`
+  axios.get(url)
+    .then(resp =>{
+      res.render('pages/SingleActor',{
+        title:`${fName} ${lName}`,
+        image:`${ImagePath}`,
         data:resp.data
       })
     })

@@ -4,19 +4,52 @@ const router = express.Router()
 
 const {programsDao: dao} = require('../../daos/dao') 
 const { table } = require('../../daos/api/programsDao')
-//1 page
+//1 a page
 router.get('/api/programs',(req ,res)=> {
-  const url = 'http://api/programs'
+  const url = 'http://localhost:3000/api/programs'
   axios.get(url)
     .then(resp =>{
       res.render('pages/ProgramsPage',{
-        title:'Programs',
         name:'Programs',
+        title:`${data.title}`,
+        rating:`${data.enum}`,
+        animationType:`${data.enum}`,
+        runtime: Number,
+        yr_released: YEAR,
+        productionCo:'productionCo',
+        budget: Number,
+        grossProfit: Number,
+        showing:'enum',
+        image:posterURL,
+        description:'desciption',
+        fivePointRating:decimal(2,1),
         data:resp.data
       })
     })
 })
-
+// 1 b Single Program
+router.get('/api/programs/:id', (req, res)=>{
+  const url = `http://localhost:3000/api/programs/${id}`
+    axios.get(url)
+    .then(resp => {
+      res.render('pages/ProgramsPage',{
+        name:'Programs',
+        title:`${data.title}`,
+        rating:`${data.enum}`,
+        animationType:`${data.enum}`,
+        runtime: Number,
+        yr_released: YEAR,
+        productionCo:'productionCo',
+        budget: Number,
+        grossProfit: Number,
+        showing:'enum',
+        image:posterURL,
+        description:'desciption',
+        fivePointRating:decimal(2,1),
+        data:resp.data
+      })
+    })
+})
 // 2.form  http://localhost:3000/programs-form
 router.get('/programs-form', (req, res)=> {
     res.render('pages/programs-form', {

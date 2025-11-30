@@ -6,12 +6,16 @@ const axios = require('axios');
 router.get('/api/directors',(req ,res)=> {
   const url = 'http://api/directors'
   axios.get(url)
-    .then(resp =>{
+    .then(resp => {
       res.render('pages/DirectorsPage',{
         title:'Directors',
         name:'Directors',
+        fName:'fName',
+        lName: 'lName',
+        Image:ImagePath,
         data:resp.data
       })
+    })
 })
 
 //  2. form http://localhost:3000/directors-form

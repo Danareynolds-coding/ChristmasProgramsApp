@@ -11,6 +11,7 @@ router.get('/api/genre',(req ,res)=> {
       res.render('pages/GenrePage',{
         title:'Genre List',
         name:'Genre List',
+        streaming:'streaming',
         data:resp.data
       })
     })

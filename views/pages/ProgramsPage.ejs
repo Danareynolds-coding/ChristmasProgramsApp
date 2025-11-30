@@ -6,10 +6,10 @@
           <div class="col">
              <% data.forEach(programs => { %>
               <div class="card" style="width: 18rem;">
-                <img src="<%= programs.posterURL %>" class="card-img-top" alt="program poster">
+                <img src="<%= programs.posterURL %>" class="card-img-top" alt="image of <%= programs.posterULR %>">
                   <div class="card-body">
                     <h3 class="card-title text-center"><%= programs.title %></h3>
-                      <p class="card-text"><%= programs.description %></p>                                   
+                      <p class="card-text"><%= programs.description %></p>                                  
                   </div>
               </div>
             <% }); %>
